@@ -4,17 +4,53 @@ Research any topic with web search, content extraction, adversarial debate, and 
 
 ---
 
-## Quick Start
+## Setup
 
-### 1. Set Your Vault Root
+The plugin doesn't bundle its runtime dependencies — you install them once. ~3 minutes total.
+
+### 1. Install the system tools
+
+```bash
+# Primary content extractor (browser-based)
+npm install -g @anthropic-ai/playwright-cli
+
+# YouTube transcripts — only needed if you'll research YouTube videos
+pip3 install youtube-transcript-api
+```
+
+`defuddle` is used as a fallback extractor and is invoked via `npx defuddle` — no install needed (npx pulls it on first use).
+
+### 2. Install the `frontend-design` companion plugin
+
+HTML reports are rendered by Anthropic's `frontend-design` skill, which ships in the official marketplace:
+
+```
+/plugin install frontend-design@claude-plugins-official
+```
+
+### 3. Set your vault root
 
 ```bash
 export RESEARCH_VAULT_ROOT="$HOME/my-vault"
 ```
 
-The plugin reads `$RESEARCH_VAULT_ROOT` at runtime. If unset, it defaults to `~/Research/`. Add the export to your shell profile to persist it.
+Add that line to `~/.zshrc` (or `~/.bashrc`) to persist. If unset, the plugin defaults to `~/Research/`.
 
-### 2. Basic Usage
+### 4. Verify
+
+Run a quick research request:
+
+```
+/research hello world --quick
+```
+
+Phase 0 of the pipeline checks every dependency. If anything's missing, it'll tell you exactly what to install before starting the run. If everything's there, it'll proceed to the actual research.
+
+---
+
+## Quick Start
+
+### 1. Basic Usage
 
 ```
 /research database reactivation tools 2026
@@ -22,14 +58,14 @@ The plugin reads `$RESEARCH_VAULT_ROOT` at runtime. If unset, it defaults to `~/
 
 That's it. The pipeline searches the web, extracts content, runs a Skeptic/Optimist debate, generates an HTML report, and saves everything to your vault. Default mode is `--detailed` (3-5 debate rounds).
 
-### 3. Modes
+### 2. Modes
 
 | Mode | Command | Debate Rounds | Best For |
 |------|---------|--------------|----------|
 | Detailed | `/research <topic>` | 3-5 rounds | Deep dives, business decisions |
 | Quick | `/research <topic> --quick` | 1 round | Quick scans, time-sensitive lookups |
 
-### 4. Input Types
+### 3. Input Types
 
 ```bash
 # Topic search — finds sources automatically
@@ -44,7 +80,7 @@ That's it. The pipeline searches the web, extracts content, runs a Skeptic/Optim
 
 YouTube URLs are handled automatically — transcripts are pulled via `youtube-transcript-api`.
 
-### 5. Natural Language (No Slash Command Needed)
+### 4. Natural Language (No Slash Command Needed)
 
 The skill auto-triggers on phrases like:
 - "Research the latest on..."
@@ -173,15 +209,6 @@ $RESEARCH_VAULT_ROOT/Research/
 | PKM & Obsidian | Note-taking methodology, vault strategies |
 
 Each research item gets up to 3 categories. Primary = where the file lives. Secondary/tertiary get cross-references.
-
----
-
-## Prerequisites
-
-- **youtube-transcript-api** — `pip3 install youtube-transcript-api` (for YouTube URLs)
-- **frontend-design skill** — installed via Superpowers plugin (for HTML reports)
-- **Vault structure** — created automatically on first run
-- **`$RESEARCH_VAULT_ROOT`** — set to your vault directory (see Quick Start)
 
 ---
 
