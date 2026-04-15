@@ -1,0 +1,15 @@
+{
+  "name": "claude-plugins",
+  "owner": {
+    "name": "Amir Maghazi",
+    "url": "https://github.com/maghazi7"
+  },
+  "plugins": [
+    {
+      "name": "research-pipeline",
+      "version": "1.0.0",
+      "description": "Research any topic with web search, content extraction, adversarial debate (Skeptic vs Optimist), and Obsidian vault integration. Produces polished HTML reports.",
+      "source": "./plugins/research-pipeline"
+    }
+  ]
+}

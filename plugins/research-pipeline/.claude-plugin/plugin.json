@@ -1,0 +1,8 @@
+{
+  "name": "research-pipeline",
+  "version": "1.0.0",
+  "description": "Research any topic with web search, content extraction, adversarial debate, and Obsidian vault integration. Produces polished HTML reports with skeptic/optimist analysis.",
+  "author": {
+    "name": "Amir Maghazi"
+  }
+}
