@@ -20,7 +20,7 @@ Before starting, verify:
 1. Playwright CLI is available: run `which playwright-cli` — if missing, inform user to install `@anthropic-ai/playwright-cli`
 2. If YouTube URLs detected: `python3 -m youtube_transcript_api --help` — if missing, run `pip3 install youtube-transcript-api`
 3. Vault directory exists: `$RESEARCH_VAULT_ROOT/Research/` (defaults to `~/Research/` if `$RESEARCH_VAULT_ROOT` is unset) — if missing, inform user to create it or set the env var
-4. The `frontend-design` skill is available (check installed plugins)
+4. The `frontend-design` skill is available (check installed plugins) — reports default to the **Anthropic theme** (warm cream + Claude coral + Fraunces); see `references/report-structure.md` for the full token spec
 
 Do NOT proceed if Playwright CLI or vault infrastructure is missing. Inform the user to run setup first.
 
@@ -218,14 +218,17 @@ Launch the debate between Skeptic and Optimist agents. Follow `references/debate
 Generate the full report AFTER the debate completes, so all sections (including Skeptic, Optimist, Debate Transcript, and Verdict) can be populated.
 
 ### HTML Report
-Invoke the `frontend-design` skill with:
+Invoke the `frontend-design` skill (`/frontend-design:frontend-design`) with:
 - **Title:** The research topic name
 - **Content structure:** All 11 sections from `references/report-structure.md`
 - **Data source:** Phase 2 organized content (for sections 1-6, 11) + Phase 3 debate output (for sections 7-10)
-- **Design tokens:** Fraunces headings, Source Sans 3 body, terracotta accent (#c2704e), warm paper background (#faf8f4)
-- **Requirements:** Sticky navigation, smooth scroll, responsive layout, cards with subtle shadows
+- **Theme:** **Anthropic** (default) — warm cream background `#F5F1EA`, warm coal ink `#141413`, Claude coral accent `#D97757` (deep `#BF5F3F` for hover), hairline rules `#E4DDD0`. Skeptic sections in warm brick `#A14841`; Optimist sections in muted forest `#4A6B4F`. Fraunces (display headings, variable opsz), Source Serif 4 (body), JetBrains Mono (code, metadata, section numbers).
+- **Composition:** Editorial — narrow reading column, generous whitespace, hairline section dividers, italic flourishes for accents, page-load stagger animation. NOT a generic dashboard layout.
+- **Requirements:** Sticky navigation, smooth scroll, responsive layout, accessible contrast (WCAG AA minimum on cream).
 
-Do NOT hand-code HTML — use the `frontend-design` skill to generate it.
+The full Anthropic token palette and section-by-section design notes live in `references/report-structure.md`. Pass that file to the `frontend-design` skill if it asks for the design system reference.
+
+Do NOT hand-code HTML — always invoke `/frontend-design:frontend-design`. Do NOT substitute a different theme unless the user explicitly asks for one.
 
 ### Markdown Companion
 Generate simultaneously with the HTML report:

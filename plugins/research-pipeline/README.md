@@ -73,13 +73,13 @@ Phase 2: Content Extraction
   └─ Preserves original data — no paraphrasing
 
 Phase 3: Adversarial Debate
-  └─ Skeptic agent (Sonnet, red) — finds risks, bias, failure modes
-  └─ Optimist agent (Sonnet, green) — finds genuine opportunity with evidence
+  └─ Skeptic agent (Sonnet, brick) — finds risks, bias, failure modes
+  └─ Optimist agent (Sonnet, forest) — finds genuine opportunity with evidence
   └─ Quick: 1 parallel round | Detailed: 3-5 rounds with cross-examination
   └─ Parent orchestrates, compresses between rounds, writes final verdict
 
 Phase 4: Report Generation
-  └─ HTML report via frontend-design skill (Fraunces + Source Sans 3, terracotta theme)
+  └─ HTML report via /frontend-design:frontend-design (Anthropic theme: warm cream + Claude coral, Fraunces + Source Serif 4 + JetBrains Mono)
   └─ Markdown companion with YAML frontmatter
   └─ 11 sections: Executive Summary → Key Facts → Market Research →
      Technical Analysis → Skeptic → Optimist → Debate Transcript →
