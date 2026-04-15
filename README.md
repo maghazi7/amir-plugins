@@ -1,6 +1,6 @@
-# Claude Code Plugins
+# Amir's Plugins
 
-A marketplace of plugins for [Claude Code](https://claude.com/claude-code).
+A marketplace of [Claude Code](https://claude.com/claude-code) plugins by [Amir Maghazi](https://github.com/maghazi7).
 
 ## Plugins
 
@@ -20,10 +20,10 @@ See [`plugins/research-pipeline/README.md`](plugins/research-pipeline/README.md)
 
 ```bash
 # add this marketplace
-/plugin marketplace add maghazi7/claude-plugins
+/plugin marketplace add maghazi7/amir-plugins
 
 # install the plugin
-/plugin install research-pipeline@claude-plugins
+/plugin install research-pipeline@amir-plugins
 ```
 
 ## Configuration
