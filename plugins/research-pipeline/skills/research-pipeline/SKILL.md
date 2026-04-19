@@ -230,6 +230,27 @@ The full Anthropic token palette and section-by-section design notes live in `re
 
 Do NOT hand-code HTML — always invoke `/frontend-design:frontend-design`. Do NOT substitute a different theme unless the user explicitly asks for one.
 
+### Image Sourcing (when request involves images/pictures/photos)
+
+If the user's request mentions images, pictures, or photos of a subject (e.g. "show what the cars look like", "include product photos"), source **real images** — do not fall back to hand-drawn SVG illustrations as a "safer" substitute.
+
+**Sourcing order (try each until one yields a verified URL):**
+
+1. **Wikimedia Commons** — dispatch a browser-worker to scan the subject's Commons category page; capture direct `upload.wikimedia.org` URLs with license and attribution.
+2. **Official brand press room** — e.g. `pressroom.<brand>.com`, `press.<brand>.com`; these usually provide high-resolution editorial images with explicit reuse terms.
+3. **Stock/editorial** — Unsplash (free, permissive license) or a licensed stock source the user has specified.
+4. **SVG last resort** — only if the subject genuinely has no public imagery (unreleased, private, or truly abstract).
+
+**Verification is mandatory.** Before embedding any image URL in the HTML report, confirm it returns HTTP 200:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" -I -A "Mozilla/5.0" "<image-url>"
+```
+
+Embed only URLs that return `200`. Always include license + photographer attribution beneath the image gallery.
+
+**Red flag — do not do this:** substituting a hand-drawn SVG illustration for a real photo as a "safer fallback." Hand-drawn SVG is for decorative or abstract elements only (icons, dividers, data-viz flourishes), never as a "what this looks like" stand-in for a real subject.
+
 ### Markdown Companion
 Generate simultaneously with the HTML report:
 ```yaml

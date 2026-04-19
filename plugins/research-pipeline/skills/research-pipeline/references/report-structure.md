@@ -109,3 +109,13 @@ Optional supporting tones for facts/caution callouts: muted blue `#4A5E6B` for f
 ### Invocation
 
 Always generate via `/frontend-design:frontend-design`. Pass this file (or the relevant section) to the skill as the design reference. Do NOT hand-code HTML and do NOT substitute the theme without explicit user request.
+
+## Image Sourcing Rule
+
+When the report involves a real subject the user wants to see (cars, products, people, places), embed **real images** — not SVG substitutes.
+
+**Sourcing fallback order:** Wikimedia Commons → brand press room → Unsplash / licensed editorial → SVG only if no public imagery exists.
+
+**Every image URL must be verified** with `curl -s -o /dev/null -w "%{http_code}" -I -A "Mozilla/5.0" <url>` → require HTTP 200 before embedding. Always credit the source beneath the gallery.
+
+**Red flag:** Hand-drawn SVG illustrations are for decorative or abstract elements (icons, dividers, data-viz flourishes) — never as a "what this looks like" stand-in for a real subject. If you catch yourself rationalizing an SVG as "safer than a broken image URL," you're doing it wrong: the answer is to verify the URL, not avoid real imagery.
