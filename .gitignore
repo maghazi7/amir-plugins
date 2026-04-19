@@ -7,3 +7,11 @@
 *.swp
 *.log
 node_modules/
+
+# Personal overlay files — plugins should stay agnostic. These patterns let
+# the user keep private notes or custom workflow references inside the plugin
+# tree without risk of committing them.
+.user-notes/
+*.private.md
+**/references/fulcrum-workflows.md
+**/IMPROVEMENTS.md
